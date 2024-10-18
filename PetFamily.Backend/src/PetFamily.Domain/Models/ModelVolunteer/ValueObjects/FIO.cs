@@ -2,7 +2,7 @@
 
 namespace PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
 
-public class FIO
+public record FIO
 {
     private string Name { get; }
 
