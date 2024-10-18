@@ -1,6 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Models.ModelPet.Enum;
-using PetFamily.Domain.Models.ModelPet.ValueObjects;
+using PetFamily.Domain.Models.SharedValueObjects;
 
 namespace PetFamily.Domain.Models.ModelPet;
 
