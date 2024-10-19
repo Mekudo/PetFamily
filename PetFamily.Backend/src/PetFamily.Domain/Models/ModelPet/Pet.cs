@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Models.ModelPet.Enum;
+using PetFamily.Domain.Models.ModelPet.ValueObjects;
 using PetFamily.Domain.Models.SharedValueObjects;
 
 namespace PetFamily.Domain.Models.ModelPet;
@@ -42,6 +43,7 @@ public class Pet
     
     public DateTime DateOfCreated { get; private set; } = default!;
 
+    public IReadOnlyList<PetPhoto> PetPhotos { get; private set; } = [];
     public Pet(
         Guid id, 
         string name, 
@@ -59,7 +61,8 @@ public class Pet
         bool isVaccinated,
         SupportStatus supportStatus,
         List<BankRequisites> bankRequisites,
-        DateTime dateOfCreated)
+        DateTime dateOfCreated,
+        IReadOnlyList<PetPhoto> petPhotos)
     {
         Id = id;
         Name = name;
@@ -78,6 +81,7 @@ public class Pet
         SupportStatus = supportStatus;
         BankRequisites = bankRequisites;
         DateOfCreated = dateOfCreated;
+        PetPhotos = petPhotos;
     }
 
     public static Result<Pet> Create(
@@ -97,7 +101,8 @@ public class Pet
         bool isVaccinated,
         SupportStatus supportStatus,
         List<BankRequisites> bankRequisites,
-        DateTime dateOfCreated)
+        DateTime dateOfCreated,
+        IReadOnlyList<PetPhoto> petPhotos)
     {
         if (string.IsNullOrWhiteSpace(name))
             return Result.Failure<Pet>("Кличка не указана");
@@ -146,7 +151,8 @@ public class Pet
             isVaccinated,
             supportStatus,
             bankRequisites,
-            dateOfCreated
+            dateOfCreated,
+            petPhotos
         );
         
         return Result.Success(pet);
