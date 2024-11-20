@@ -4,11 +4,11 @@ namespace PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
 
 public record FIO
 {
-    private string Name { get; }
+    public string Name { get; }
 
-    private string MiddleName { get; }
+    public string MiddleName { get; }
 
-    private string SurName { get; }
+    public string SurName { get; }
 
     private FIO(string name, string middleName, string surName)
     {

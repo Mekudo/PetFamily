@@ -4,11 +4,11 @@ namespace PetFamily.Domain.Models.SharedValueObjects;
 
 public record BankRequisites
 {
-    private string NameOfBank { get; }
+    public string NameOfBank { get; }
 
-    private string BankIdentificationCode { get; }
+    public string BankIdentificationCode { get; }
 
-    private string CorrespondentAccount { get; }
+    public string CorrespondentAccount { get; }
 
     private BankRequisites(string nameOfBank, string bankIdentificationCode, string correspondentAccount)
     {

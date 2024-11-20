@@ -4,9 +4,9 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetPhoto
 {
-    private string Path { get; }
-    
-    private bool IsMainPhoto { get; }
+    public string Path { get; }
+
+    public bool IsMainPhoto { get; }
 
     private PetPhoto(string path, bool isMainPhoto)
     {
