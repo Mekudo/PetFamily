@@ -2,16 +2,17 @@
 using PetFamily.Domain.Models.ModelPet;
 using PetFamily.Domain.Models.ModelPet.Enum;
 using PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
-using PetFamily.Domain.Models.SharedValueObjects;
+using PetFamily.Domain.Models.Shared;
 
 namespace PetFamily.Domain.Models.ModelVolunteer;
 
-public  class Volunteer
+public  class Volunteer : Shared.Entity<Guid>
 {
-    private Volunteer(){ }
-
-    public Guid Id { get; private set; } = default!;
-
+    private Volunteer(Guid id) : base(id)
+    {
+        
+    }
+    
     public FIO FIO { get; private set; } = default!;
 
     public string Email { get; private set; } = default!;
@@ -53,9 +54,8 @@ public  class Volunteer
         List<SocialNetwork> socialNetworks,
         List<BankRequisites> bankRequisites,
         IReadOnlyList<Pet> pets
-        )
+        ) : base(id)
     {
-        Id = id;
         FIO = fIO;
         Email = email;
         Description = description;
