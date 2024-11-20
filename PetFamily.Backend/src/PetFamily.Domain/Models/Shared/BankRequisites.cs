@@ -1,6 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 
-namespace PetFamily.Domain.Models.SharedValueObjects;
+namespace PetFamily.Domain.Models.Shared;
 
 public record BankRequisites
 {

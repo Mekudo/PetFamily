@@ -1,15 +1,17 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Models.ModelPet.Enum;
 using PetFamily.Domain.Models.ModelPet.ValueObjects;
-using PetFamily.Domain.Models.SharedValueObjects;
+using PetFamily.Domain.Models.Shared;
 
 namespace PetFamily.Domain.Models.ModelPet;
 
-public class Pet
+public class Pet : Shared.Entity<Guid>
 {
-    private Pet(){ }
-    
-    public Guid Id { get; private set; } = default!;
+    //ef
+    private Pet(Guid id) : base(id)
+    {
+        
+    }
     
     public string Name { get; private set; } = default!;
     
@@ -39,7 +41,7 @@ public class Pet
     
     public SupportStatus SupportStatus { get; private set; } = default!;
     
-    public List<BankRequisites> BankRequisites { get; private set; } = [];
+    public IReadOnlyList<BankRequisites> BankRequisites { get; private set; } = [];
     
     public DateTime DateOfCreated { get; private set; } = default!;
 
@@ -60,11 +62,10 @@ public class Pet
         DateOnly dateOfBirth,
         bool isVaccinated,
         SupportStatus supportStatus,
-        List<BankRequisites> bankRequisites,
+        IReadOnlyList<BankRequisites> bankRequisites,
         DateTime dateOfCreated,
-        IReadOnlyList<PetPhoto> petPhotos)
+        IReadOnlyList<PetPhoto> petPhotos) : base(id)
     {
-        Id = id;
         Name = name;
         Species = species;
         Description = description;
@@ -100,7 +101,7 @@ public class Pet
         DateOnly dateOfBirth,
         bool isVaccinated,
         SupportStatus supportStatus,
-        List<BankRequisites> bankRequisites,
+        IReadOnlyList<BankRequisites> bankRequisites,
         DateTime dateOfCreated,
         IReadOnlyList<PetPhoto> petPhotos)
     {

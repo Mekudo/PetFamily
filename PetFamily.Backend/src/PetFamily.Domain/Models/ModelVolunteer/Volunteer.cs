@@ -2,16 +2,17 @@
 using PetFamily.Domain.Models.ModelPet;
 using PetFamily.Domain.Models.ModelPet.Enum;
 using PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
-using PetFamily.Domain.Models.SharedValueObjects;
+using PetFamily.Domain.Models.Shared;
 
 namespace PetFamily.Domain.Models.ModelVolunteer;
 
-public  class Volunteer
+public  class Volunteer : Shared.Entity<Guid>
 {
-    private Volunteer(){ }
-
-    public Guid Id { get; private set; } = default!;
-
+    //ef
+    private Volunteer(Guid id) : base(id)
+    {
+        
+    }
     public FIO FIO { get; private set; } = default!;
 
     public string Email { get; private set; } = default!;
@@ -22,9 +23,9 @@ public  class Volunteer
 
     public string PhoneNumber { get; private set; } = default!;
 
-    public List<SocialNetwork> SocialNetwork { get; private set; } = [];
+    public IReadOnlyList<SocialNetwork> SocialNetwork { get; private set; } = [];
 
-    public List<BankRequisites> BankRequisites { get; private set; } = [];
+    public IReadOnlyList<BankRequisites> BankRequisites { get; private set; } = [];
 
     public IReadOnlyList<Pet> Pets { get; private set; } = default!;
 
@@ -50,12 +51,11 @@ public  class Volunteer
         string description,
         int workExpirience,
         string phoneNumber,
-        List<SocialNetwork> socialNetworks,
-        List<BankRequisites> bankRequisites,
+        IReadOnlyList<SocialNetwork> socialNetworks,
+        IReadOnlyList<BankRequisites> bankRequisites,
         IReadOnlyList<Pet> pets
-        )
+        ) : base(id)
     {
-        Id = id;
         FIO = fIO;
         Email = email;
         Description = description;
@@ -73,8 +73,8 @@ public  class Volunteer
         string description,
         int workExpirience,
         string phoneNumber,
-        List<SocialNetwork> socialNetworks,
-        List<BankRequisites> bankRequisites,
+        IReadOnlyList<SocialNetwork> socialNetworks,
+        IReadOnlyList<BankRequisites> bankRequisites,
         IReadOnlyList<Pet> pets)
     {
         if (fIO == null)
