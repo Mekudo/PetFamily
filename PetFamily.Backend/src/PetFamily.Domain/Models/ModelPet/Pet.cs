@@ -1,15 +1,16 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Models.ModelPet.Enum;
 using PetFamily.Domain.Models.ModelPet.ValueObjects;
-using PetFamily.Domain.Models.SharedValueObjects;
+using PetFamily.Domain.Models.Shared;
 
 namespace PetFamily.Domain.Models.ModelPet;
 
-public class Pet
+public class Pet : Shared.Entity<Guid>
 {
-    private Pet(){ }
-    
-    public Guid Id { get; private set; } = default!;
+    private Pet(Guid id) : base(id)
+    {
+        
+    }
     
     public string Name { get; private set; } = default!;
     
@@ -62,9 +63,8 @@ public class Pet
         SupportStatus supportStatus,
         List<BankRequisites> bankRequisites,
         DateTime dateOfCreated,
-        IReadOnlyList<PetPhoto> petPhotos)
+        IReadOnlyList<PetPhoto> petPhotos) : base(id)
     {
-        Id = id;
         Name = name;
         Species = species;
         Description = description;
