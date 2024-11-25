@@ -6,26 +6,26 @@ using PetFamily.Domain.Models.Shared;
 
 namespace PetFamily.Domain.Models.ModelVolunteer;
 
-public  class Volunteer : Shared.Entity<Guid>
+public  class Volunteer : Shared.Entity<VolunteerId>
 {
-    private Volunteer(Guid id) : base(id)
+    private Volunteer(VolunteerId id) : base(id)
     {
         
     }
     
     public FIO FIO { get; private set; } = default!;
 
-    public string Email { get; private set; } = default!;
+    public VolunteerEmail Email { get; private set; } = default!;
 
-    public string Description { get; private set; } = default!;
+    public DescriptionShare Description { get; private set; } = default!;
 
-    public int WorkExperience { get; private set; } = default!;
+    public VolunteerWorkExperience WorkExperience { get; private set; } = default!;
 
-    public string PhoneNumber { get; private set; } = default!;
+    public Phone PhoneNumber { get; private set; } = default!;
 
-    public List<SocialNetwork> SocialNetwork { get; private set; } = [];
+    public IReadOnlyList<SocialNetwork> SocialNetwork { get; private set; } = [];
 
-    public List<BankRequisites> BankRequisites { get; private set; } = [];
+    public IReadOnlyList<BankRequisites> BankRequisites { get; private set; } = [];
 
     public IReadOnlyList<Pet> Pets { get; private set; } = default!;
 
@@ -45,14 +45,14 @@ public  class Volunteer : Shared.Entity<Guid>
     }
 
     public Volunteer(
-        Guid id,
+        VolunteerId id,
         FIO fIO,
-        string email,
-        string description,
-        int workExpirience,
-        string phoneNumber,
-        List<SocialNetwork> socialNetworks,
-        List<BankRequisites> bankRequisites,
+        VolunteerEmail email,
+        DescriptionShare description,
+        VolunteerWorkExperience workExpirience,
+        Phone phoneNumber,
+        IReadOnlyList<SocialNetwork> socialNetworks,
+        IReadOnlyList<BankRequisites> bankRequisites,
         IReadOnlyList<Pet> pets
         ) : base(id)
     {
@@ -67,33 +67,18 @@ public  class Volunteer : Shared.Entity<Guid>
     }
 
     public static Result<Volunteer> Create(
-        Guid id,
+        VolunteerId idShare,
         FIO fIO,
-        string email,
-        string description,
-        int workExpirience,
-        string phoneNumber,
-        List<SocialNetwork> socialNetworks,
-        List<BankRequisites> bankRequisites,
+        VolunteerEmail email,
+        DescriptionShare description,
+        VolunteerWorkExperience workExpirience,
+        Phone phoneNumber,
+        IReadOnlyList<SocialNetwork> socialNetworks,
+        IReadOnlyList<BankRequisites> bankRequisites,
         IReadOnlyList<Pet> pets)
     {
-        if (fIO == null)
-            Result.Failure<Volunteer>("ФИО не указано");
-
-        if (string.IsNullOrWhiteSpace(email))
-            Result.Failure<Volunteer>("Электронна почта не указана");
-
-        if (string.IsNullOrWhiteSpace(description))
-            Result.Failure<Volunteer>("Описание не указано");
-
-        if (workExpirience > 100 || workExpirience < 0)
-            Result.Failure<Volunteer>("Некорректно указан опыт работы");
-
-        if (string.IsNullOrWhiteSpace(phoneNumber))
-            Result.Failure<Volunteer>("Номер телефона не указан");
-
         var volunteer = new Volunteer(
-            id,
+            idShare,
             fIO,
             email,
             description,

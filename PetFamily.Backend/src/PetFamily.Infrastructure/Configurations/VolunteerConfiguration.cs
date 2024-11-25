@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetFamily.Domain.Models.ModelVolunteer;
+using PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
 
 namespace PetFamily.Infrastructure.Configurations;
 
@@ -12,6 +13,13 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
         
         builder.HasKey(v => v.Id);
 
+        builder.Property(v => v.Id)
+            .HasColumnOrder(1)
+            .HasConversion(
+                id => id.Id,
+                id => VolunteerId.Create(id))
+            .IsRequired();
+        
         builder.OwnsOne(v => v.FIO, fo =>
         {
             fo.ToJson();

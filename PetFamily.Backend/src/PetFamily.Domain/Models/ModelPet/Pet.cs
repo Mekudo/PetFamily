@@ -5,67 +5,68 @@ using PetFamily.Domain.Models.Shared;
 
 namespace PetFamily.Domain.Models.ModelPet;
 
-public class Pet : Shared.Entity<Guid>
+public class Pet : Shared.Entity<PetId>
 {
-    private Pet(Guid id) : base(id)
+    private Pet(PetId petId) : base(petId)
     {
         
     }
     
-    public string Name { get; private set; } = default!;
+    public NameShare NameShare { get; private set; } = default!;
     
     public string Species { get; private set; } = default!;
     
-    public string Description { get; private set; } = default!;
+    public DescriptionShare Description { get; private set; } = default!;
     
     public string Breed { get; private set; } = default!;
     
-    public string Color { get; private set; } = default!;
+    public PetColor Color { get; private set; } = default!;
 
-    public string HealthInfo { get; private set; } = default!;
+    public PetHealth HealthInfo { get; private set; } = default!;
     
-    public string Address { get; private set; } = default!;
+    public PetAddress Address { get; private set; } = default!;
     
-    public int Weight { get; private set; }
+    public PetWeight Weight { get; private set; }
     
-    public int Height { get; private set; }
+    public PetHeight Height { get; private set; }
     
-    public string PhoneNumber { get; private set; } = default!;
+    public Phone PhoneNumberNumber { get; private set; } = default!;
     
-    public bool IsCastrated { get; private set; }
+    public PetCastrated IsCastrated { get; private set; }
     
     public DateOnly DateOfBirth { get; private set; } = default!;
     
-    public bool IsVaccinated { get; private set; }
+    public PetVaccinated IsVaccinated { get; private set; }
     
     public SupportStatus SupportStatus { get; private set; } = default!;
     
-    public List<BankRequisites> BankRequisites { get; private set; } = [];
+    public IReadOnlyList<BankRequisites> BankRequisites { get; private set; } = [];
     
     public DateTime DateOfCreated { get; private set; } = default!;
 
     public IReadOnlyList<PetPhoto> PetPhotos { get; private set; } = [];
+    
     public Pet(
-        Guid id, 
-        string name, 
+        PetId petId, 
+        NameShare nameShare, 
         string species, 
-        string description,
+        DescriptionShare description,
         string breed,
-        string color,
-        string healthInfo,
-        string address,
-        int weight,
-        int height,
-        string phoneNumber,
-        bool isCastrated,
+        PetColor color,
+        PetHealth healthInfo,
+        PetAddress address,
+        PetWeight weight,
+        PetHeight height,
+        Phone phoneNumberNumber,
+        PetCastrated isCastrated,
         DateOnly dateOfBirth,
-        bool isVaccinated,
+        PetVaccinated isVaccinated,
         SupportStatus supportStatus,
-        List<BankRequisites> bankRequisites,
+        IReadOnlyList<BankRequisites> bankRequisites,
         DateTime dateOfCreated,
-        IReadOnlyList<PetPhoto> petPhotos) : base(id)
+        IReadOnlyList<PetPhoto> petPhotos) : base(petId)
     {
-        Name = name;
+        NameShare = nameShare;
         Species = species;
         Description = description;
         Breed = breed;
@@ -74,7 +75,7 @@ public class Pet : Shared.Entity<Guid>
         Address = address;
         Weight = weight;
         Height = height;
-        PhoneNumber = phoneNumber;
+        PhoneNumberNumber = phoneNumberNumber;
         IsCastrated = isCastrated;
         DateOfBirth = dateOfBirth;
         IsVaccinated = isVaccinated;
@@ -85,58 +86,28 @@ public class Pet : Shared.Entity<Guid>
     }
 
     public static Result<Pet> Create(
-        Guid id,
-        string name,
+        PetId petId,
+        NameShare nameShare,
         string species,
-        string description,
+        DescriptionShare description,
         string breed,
-        string color,
-        string healthInfo,
-        string address,
-        int weight,
-        int height,
-        string phoneNumber,
-        bool isCastrated,
+        PetColor color,
+        PetHealth healthInfo,
+        PetAddress address,
+        PetWeight weight,
+        PetHeight height,
+        Phone phoneNumberNumber,
+        PetCastrated isCastrated,
         DateOnly dateOfBirth,
-        bool isVaccinated,
+        PetVaccinated isVaccinated,
         SupportStatus supportStatus,
-        List<BankRequisites> bankRequisites,
+        IReadOnlyList<BankRequisites> bankRequisites,
         DateTime dateOfCreated,
         IReadOnlyList<PetPhoto> petPhotos)
     {
-        if (string.IsNullOrWhiteSpace(name))
-            return Result.Failure<Pet>("Кличка не указана");
-
-        if (string.IsNullOrWhiteSpace(description))
-            return Result.Failure<Pet>("Описание не указано");
-        
-        if (string.IsNullOrWhiteSpace(species))
-            return Result.Failure<Pet>("Вид не указан");
-        
-        if (string.IsNullOrWhiteSpace(breed))
-            return Result.Failure<Pet>("Порода не указана");
-        
-        if (string.IsNullOrWhiteSpace(color))
-            return Result.Failure<Pet>("Окрас не указан");
-        
-        if (string.IsNullOrWhiteSpace(healthInfo))
-            return Result.Failure<Pet>("Информация о здоровье не указана");
-        
-        if (string.IsNullOrWhiteSpace(address))
-            return Result.Failure<Pet>("Адрес не указан");
-        
-        if (weight <= 0)
-            return Result.Failure<Pet>("Вес не может быть меньше нуля");
-        
-        if (height <= 0)
-            return Result.Failure<Pet>("Рост не может быть меньше нуля");
-        
-        if(string.IsNullOrWhiteSpace(phoneNumber))
-            return Result.Failure<Pet>("Номер телефона не указан");
-
         var pet = new Pet(
-            id,
-            name,
+            petId,
+            nameShare,
             species,
             description,
             breed,
@@ -145,7 +116,7 @@ public class Pet : Shared.Entity<Guid>
             address,
             weight,
             height,
-            phoneNumber,
+            phoneNumberNumber,
             isCastrated,
             dateOfBirth,
             isVaccinated,
