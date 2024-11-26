@@ -21,11 +21,4 @@ public class Specie : Shared.Entity<SpecieId>
         Name = name;
         Breeds = breeds;
     }
-
-    public static Result<Specie> Create(SpecieId specieId,NameShare name, IReadOnlyList<Breed> breeds)
-    {
-        var specie = new Specie(specieId, name, breeds);
-        
-        return Result.Success(specie);
-    }
 }

@@ -17,7 +17,7 @@ public class BreedConfiguration : IEntityTypeConfiguration<Breed>
             .HasColumnOrder(1)
             .HasConversion(
                 id => id.Id,
-                id => BreedId.Create(id))
+                id => new BreedId(id))
             .IsRequired();
         
         builder.ComplexProperty(s => s.Name, sn =>

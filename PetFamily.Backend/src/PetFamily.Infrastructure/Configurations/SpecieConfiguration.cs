@@ -17,7 +17,7 @@ public class SpecieConfiguration : IEntityTypeConfiguration<Specie>
             .HasColumnOrder(1)
             .HasConversion(
                 id => id.Id,
-                id => SpecieId.Create(id))
+                id => new SpecieId(id))
             .IsRequired();
 
         builder.ComplexProperty(s => s.Name, sn =>

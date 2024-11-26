@@ -84,48 +84,4 @@ public class Pet : Shared.Entity<PetId>
         DateOfCreated = dateOfCreated;
         PetPhotos = petPhotos;
     }
-
-    public static Result<Pet> Create(
-        PetId petId,
-        NameShare nameShare,
-        string species,
-        DescriptionShare description,
-        string breed,
-        PetColor color,
-        PetHealth healthInfo,
-        PetAddress address,
-        PetWeight weight,
-        PetHeight height,
-        Phone phoneNumberNumber,
-        PetCastrated isCastrated,
-        DateOnly dateOfBirth,
-        PetVaccinated isVaccinated,
-        SupportStatus supportStatus,
-        IReadOnlyList<BankRequisites> bankRequisites,
-        DateTime dateOfCreated,
-        IReadOnlyList<PetPhoto> petPhotos)
-    {
-        var pet = new Pet(
-            petId,
-            nameShare,
-            species,
-            description,
-            breed,
-            color,
-            healthInfo,
-            address,
-            weight,
-            height,
-            phoneNumberNumber,
-            isCastrated,
-            dateOfBirth,
-            isVaccinated,
-            supportStatus,
-            bankRequisites,
-            dateOfCreated,
-            petPhotos
-        );
-        
-        return Result.Success(pet);
-    }
 }

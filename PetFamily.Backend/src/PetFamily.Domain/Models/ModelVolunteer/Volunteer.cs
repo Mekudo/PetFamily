@@ -65,29 +65,4 @@ public  class Volunteer : Shared.Entity<VolunteerId>
         BankRequisites = bankRequisites;
         Pets = pets;
     }
-
-    public static Result<Volunteer> Create(
-        VolunteerId idShare,
-        FIO fIO,
-        VolunteerEmail email,
-        DescriptionShare description,
-        VolunteerWorkExperience workExpirience,
-        Phone phoneNumber,
-        IReadOnlyList<SocialNetwork> socialNetworks,
-        IReadOnlyList<BankRequisites> bankRequisites,
-        IReadOnlyList<Pet> pets)
-    {
-        var volunteer = new Volunteer(
-            idShare,
-            fIO,
-            email,
-            description,
-            workExpirience,
-            phoneNumber,
-            socialNetworks,
-            bankRequisites,
-            pets);
-
-        return Result.Success(volunteer);
-    }
 }

@@ -27,11 +27,4 @@ public class Breed : Shared.Entity<BreedId>
         Description = description;
         SpecieId = specieId;
     }
-
-    public static Result<Breed> Create(BreedId id, NameShare nameShare, DescriptionShare description, SpecieId specieId)
-    {
-        var breed = new Breed(id, nameShare, description, specieId);
-        
-        return Result.Success(breed);
-    }
 }

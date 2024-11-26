@@ -17,7 +17,7 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             .HasColumnOrder(1)
             .HasConversion(
                 id => id.Id,
-                id => PetId.Create(id))
+                id => new PetId(id))
             .IsRequired();
         
         builder.ComplexProperty(p => p.NameShare, pn =>

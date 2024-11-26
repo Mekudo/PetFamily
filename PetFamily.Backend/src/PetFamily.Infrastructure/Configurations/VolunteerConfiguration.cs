@@ -17,7 +17,7 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
             .HasColumnOrder(1)
             .HasConversion(
                 id => id.Id,
-                id => VolunteerId.Create(id))
+                id => new VolunteerId(id))
             .IsRequired();
         
         builder.OwnsOne(v => v.FIO, fo =>
