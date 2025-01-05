@@ -36,12 +36,8 @@ public class BreedConfiguration : IEntityTypeConfiguration<Breed>
                 .IsRequired();
         });
         
-        builder.Property(b => b.SpecieId)
-            .IsRequired();
-        
         builder.HasOne(b => b.Specie)
-            .WithMany()
-            .HasForeignKey(b => b.SpecieId)
+            .WithMany(s => s.Breeds)
             .IsRequired();
     }
 }

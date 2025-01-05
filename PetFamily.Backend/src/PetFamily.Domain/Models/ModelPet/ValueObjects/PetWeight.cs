@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetWeight
 {
+    public PetWeight(){}
     public int Weight { get; }
 
     private PetWeight(int weight)

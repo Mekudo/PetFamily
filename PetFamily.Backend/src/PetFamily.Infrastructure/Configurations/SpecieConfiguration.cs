@@ -27,10 +27,6 @@ public class SpecieConfiguration : IEntityTypeConfiguration<Specie>
                 .HasMaxLength(30)
                 .IsRequired();
         });
-
-        builder.HasMany(s => s.Breeds)
-            .WithOne()
-            .HasForeignKey(s => s.SpecieId)
-            .IsRequired();
+        
     }
 }

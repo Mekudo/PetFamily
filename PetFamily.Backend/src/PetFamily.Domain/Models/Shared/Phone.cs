@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.Shared;
 
 public record Phone
 {
+    public Phone(){}
     public string PhoneNumber { get; }
 
     private Phone(string phoneNumber)

@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
 
 public record VolunteerEmail
 {
+    public VolunteerEmail(){}
     public string Email { get; }
 
     private VolunteerEmail(string email)

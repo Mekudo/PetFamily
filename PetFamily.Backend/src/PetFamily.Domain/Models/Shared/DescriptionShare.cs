@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.Shared;
 
 public record DescriptionShare
 {
+    public DescriptionShare(){}
     public string Description { get; }
 
     private DescriptionShare(string description)

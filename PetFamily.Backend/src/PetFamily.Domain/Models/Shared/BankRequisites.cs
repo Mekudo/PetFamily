@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.Shared;
 
 public record BankRequisites
 {
+    public BankRequisites(){}
     public string NameOfBank { get; }
 
     public string BankIdentificationCode { get; }

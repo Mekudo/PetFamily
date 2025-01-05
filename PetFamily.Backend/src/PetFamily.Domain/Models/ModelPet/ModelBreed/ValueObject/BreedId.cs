@@ -2,6 +2,7 @@
 
 public record BreedId
 {
+    public BreedId(){}
     public Guid Id { get; }
 
     public BreedId(Guid id)

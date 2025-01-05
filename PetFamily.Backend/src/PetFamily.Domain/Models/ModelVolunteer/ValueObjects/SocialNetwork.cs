@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
 
 public record SocialNetwork
 {
+    public SocialNetwork(){}
     public string Title { get; }
 
     public string Link { get; }

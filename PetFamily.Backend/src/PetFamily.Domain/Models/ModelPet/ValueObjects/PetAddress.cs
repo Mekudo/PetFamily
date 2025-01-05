@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetAddress
 {
+    public PetAddress() { }
     public string City { get; }
     
     public string Street { get; }

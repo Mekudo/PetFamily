@@ -7,6 +7,7 @@ namespace PetFamily.Domain.Models.ModelPet;
 
 public class Pet : Shared.Entity<PetId>
 {
+    public Pet() { }
     private Pet(PetId petId) : base(petId)
     {
         
@@ -40,12 +41,11 @@ public class Pet : Shared.Entity<PetId>
     
     public SupportStatus SupportStatus { get; private set; } = default!;
     
-    public IReadOnlyList<BankRequisites> BankRequisites { get; private set; } = [];
+    public BankRequisitesList BankRequisites { get; private set; }
     
     public DateTime DateOfCreated { get; private set; } = default!;
 
-    public IReadOnlyList<PetPhoto> PetPhotos { get; private set; } = [];
-    
+    public PetPhotoList PetPhotos { get; private set; }
     public Pet(
         PetId petId, 
         NameShare nameShare, 
@@ -62,9 +62,9 @@ public class Pet : Shared.Entity<PetId>
         DateOnly dateOfBirth,
         PetVaccinated isVaccinated,
         SupportStatus supportStatus,
-        IReadOnlyList<BankRequisites> bankRequisites,
+        BankRequisitesList bankRequisites,
         DateTime dateOfCreated,
-        IReadOnlyList<PetPhoto> petPhotos) : base(petId)
+        PetPhotoList petPhotos) : base(petId)
     {
         NameShare = nameShare;
         Species = species;

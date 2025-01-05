@@ -35,47 +35,65 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
                 .IsRequired();
         });
         
-        builder.Property(v => v.Email)
-            .HasColumnName("email")
-            .HasMaxLength(100)
-            .IsRequired();
-        
-        builder.Property(v => v.Description)
-            .HasColumnName("description")
-            .HasMaxLength(300)
-            .IsRequired();
-        
-        builder.Property(v => v.WorkExperience)
-            .HasColumnName("work_experience")
-            .IsRequired();
-        
-        builder.Property(v => v.PhoneNumber)
-            .HasColumnName("phone_number")
-            .HasMaxLength(50)
-            .IsRequired();
-
-        builder.OwnsMany(v => v.SocialNetwork, sn =>
+        builder.ComplexProperty(v => v.Email, vd =>
         {
-            sn.ToJson();
-            
-            sn.Property(soc => soc.Title)
-                .HasMaxLength(50)
-                .IsRequired();
-            sn.Property(soc => soc.Link)
-                .HasMaxLength(50)
+            vd.Property(e => e.Email)
+                .HasColumnName("email")
+                .HasMaxLength(100)
                 .IsRequired();
         });
         
-        builder.OwnsMany(v => v.BankRequisites, br =>
+        builder.ComplexProperty(v => v.Description, vd =>
         {
-            br.ToJson();
-            
-            br.Property(b => b.NameOfBank)
+            vd.Property(d => d.Description)
+                .HasColumnName("description")
+                .HasMaxLength(250)
                 .IsRequired();
-            br.Property(b => b.BankIdentificationCode)
+        });
+        
+        builder.ComplexProperty(v => v.WorkExperience, vd =>
+        {
+            vd.Property(w => w.WorkExperience)
+                .HasColumnName("work_experience")
+                .HasMaxLength(250)
                 .IsRequired();
-            br.Property(b => b.CorrespondentAccount)
+        });
+        
+        builder.ComplexProperty(v => v.PhoneNumber, vd =>
+        {
+            vd.Property(p => p.PhoneNumber)
+                .HasColumnName("phone_number")
+                .HasMaxLength(250)
                 .IsRequired();
+        });
+        
+        builder.OwnsOne(p => p.SocialNetwork, psn =>
+        {
+            psn.ToJson("social_network");
+            psn.OwnsMany(p => p.SocialNetworks, pb =>
+            {
+                pb.Property(r => r.Title)
+                    .IsRequired();
+                
+                pb.Property(r => r.Link)
+                    .IsRequired();
+            });
+        });
+        
+        builder.OwnsOne(p => p.BankRequisites, pbr =>
+        {
+            pbr.ToJson("bank_requisites");
+            pbr.OwnsMany(p => p.BankRequisites, pb =>
+            {
+                pb.Property(r => r.NameOfBank)
+                    .IsRequired();
+                
+                pb.Property(r => r.CorrespondentAccount)
+                    .IsRequired();
+                
+                pb.Property(r => r.BankIdentificationCode)
+                    .IsRequired();
+            });
         });
         
         builder.HasMany(v => v.Pets)

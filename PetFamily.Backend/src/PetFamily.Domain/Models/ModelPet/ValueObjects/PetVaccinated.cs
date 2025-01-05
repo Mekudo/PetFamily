@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetVaccinated
 {
+    public PetVaccinated(){}
     public bool IsVaccinated { get; }
 
     private PetVaccinated(bool isVaccinated)

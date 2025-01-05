@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetHealth
 {
+    public PetHealth(){}
     public string HealthInfo { get; }
 
     private PetHealth(string healthInfo)

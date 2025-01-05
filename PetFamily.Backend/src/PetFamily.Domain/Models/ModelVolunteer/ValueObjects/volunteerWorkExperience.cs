@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelVolunteer.ValueObjects;
 
 public record VolunteerWorkExperience
 {
+    public VolunteerWorkExperience(){}
     public int WorkExperience { get; }
 
     private VolunteerWorkExperience(int workExperience)

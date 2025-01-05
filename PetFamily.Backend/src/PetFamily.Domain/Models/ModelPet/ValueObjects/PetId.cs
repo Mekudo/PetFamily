@@ -2,6 +2,7 @@
 
 public record PetId
 {
+    public PetId(){}
     public Guid Id { get; }
 
     public PetId(Guid id)

@@ -8,11 +8,7 @@ namespace PetFamily.Domain.Models.ModelVolunteer;
 
 public  class Volunteer : Shared.Entity<VolunteerId>
 {
-    private Volunteer(VolunteerId id) : base(id)
-    {
-        
-    }
-    
+    public Volunteer(){}
     public FIO FIO { get; private set; } = default!;
 
     public VolunteerEmail Email { get; private set; } = default!;
@@ -23,9 +19,9 @@ public  class Volunteer : Shared.Entity<VolunteerId>
 
     public Phone PhoneNumber { get; private set; } = default!;
 
-    public IReadOnlyList<SocialNetwork> SocialNetwork { get; private set; } = [];
+    public SocialNetworkList SocialNetwork { get; private set; }
 
-    public IReadOnlyList<BankRequisites> BankRequisites { get; private set; } = [];
+    public BankRequisitesList BankRequisites { get; private set; }
 
     public IReadOnlyList<Pet> Pets { get; private set; } = default!;
 
@@ -51,8 +47,8 @@ public  class Volunteer : Shared.Entity<VolunteerId>
         DescriptionShare description,
         VolunteerWorkExperience workExpirience,
         Phone phoneNumber,
-        IReadOnlyList<SocialNetwork> socialNetworks,
-        IReadOnlyList<BankRequisites> bankRequisites,
+        SocialNetworkList socialNetworks,
+        BankRequisitesList bankRequisites,
         IReadOnlyList<Pet> pets
         ) : base(id)
     {

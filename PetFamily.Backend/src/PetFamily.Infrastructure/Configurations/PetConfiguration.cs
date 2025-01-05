@@ -130,34 +130,38 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             .HasMaxLength(15)
             .IsRequired();
 
-        builder.OwnsMany(p => p.BankRequisites, br =>
+        builder.OwnsOne(p => p.BankRequisites, pbr =>
         {
-            br.ToJson();
-            
-            br.Property(b => b.NameOfBank)
-                .IsRequired();
-            
-            br.Property(b => b.BankIdentificationCode)
-                .IsRequired();
-            
-            br.Property(b => b.CorrespondentAccount)
-                .IsRequired();
+            pbr.ToJson("bank_requisites");
+            pbr.OwnsMany(p => p.BankRequisites, pb =>
+            {
+                pb.Property(r => r.NameOfBank)
+                    .IsRequired();
+                
+                pb.Property(r => r.CorrespondentAccount)
+                    .IsRequired();
+                
+                pb.Property(r => r.BankIdentificationCode)
+                    .IsRequired();
+            });
         });
         
         builder.Property(p => p.DateOfCreated)
             .HasColumnName("date_of_created")
             .HasMaxLength(50)
             .IsRequired();
-
-        builder.OwnsMany(p => p.PetPhotos, pf =>
+        
+        builder.OwnsOne(p => p.PetPhotos, ppb =>
         {
-            pf.ToJson();
-            
-            pf.Property(ph => ph.Path)
-                .IsRequired();
-            
-            pf.Property(imp => imp.IsMainPhoto)
-                .IsRequired();
+            ppb.ToJson("pet_photos");
+            ppb.OwnsMany(p => p.PetPhotos, pb =>
+            {
+                pb.Property(r => r.Path)
+                    .IsRequired();
+                
+                pb.Property(r => r.IsMainPhoto)
+                    .IsRequired();
+            });
         });
     }
 }

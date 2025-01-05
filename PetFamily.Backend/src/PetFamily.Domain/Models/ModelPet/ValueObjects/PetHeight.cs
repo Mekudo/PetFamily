@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetHeight
 {
+    public PetHeight(){}
     public int Height { get; }
 
     private PetHeight(int height)

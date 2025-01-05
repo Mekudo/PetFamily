@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetCastrated
 {
+    public PetCastrated(){}
     public bool IsCastrated { get; }
 
     private PetCastrated(bool isCastrated)

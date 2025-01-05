@@ -8,11 +8,10 @@ namespace PetFamily.Domain.Models.ModelPet.ModelBreed;
 
 public class Breed : Shared.Entity<BreedId>
 {
+    public Breed(){}
     public NameShare Name { get; private set; } = default!;
 
     public DescriptionShare Description { get; private set; } = default!;
-    
-    public SpecieId SpecieId { get; private set; } = default!;
     
     public Specie Specie { get; private set; } = default!;
     
@@ -21,10 +20,9 @@ public class Breed : Shared.Entity<BreedId>
         
     }
 
-    private Breed(BreedId breedId, NameShare name, DescriptionShare description, SpecieId specieId) : base(breedId)
+    private Breed(BreedId breedId, NameShare name, DescriptionShare description) : base(breedId)
     {
         Name = name;
         Description = description;
-        SpecieId = specieId;
     }
 }

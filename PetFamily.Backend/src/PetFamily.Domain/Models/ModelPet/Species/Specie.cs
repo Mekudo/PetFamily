@@ -7,6 +7,7 @@ namespace PetFamily.Domain.Models.ModelPet.Species;
 
 public class Specie : Shared.Entity<SpecieId>
 {
+    public Specie(){}
     private Specie(SpecieId specieId) : base(specieId)
     {
         

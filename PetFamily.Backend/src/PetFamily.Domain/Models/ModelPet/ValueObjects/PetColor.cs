@@ -4,6 +4,7 @@ namespace PetFamily.Domain.Models.ModelPet.ValueObjects;
 
 public record PetColor
 {
+    public PetColor(){}
     public string Color { get; }
 
     private PetColor(string color)
